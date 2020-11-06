@@ -23,7 +23,7 @@ public class CustomerRepositoryTests {
 
     @Test
     public void testFindByLastName() {
-        Customer customer = new Customer("first", "last");
+        Customer customer = new Customer("first", "last", null);
         databaseClient.insert().into(Customer.class).using(customer).then().as(StepVerifier::create).verifyComplete();
 
         Flux<Customer> findByLastName = customers.findByLastName(customer.getLastName());

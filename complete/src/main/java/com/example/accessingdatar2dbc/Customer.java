@@ -1,5 +1,6 @@
 package com.example.accessingdatar2dbc;
 
+import java.util.List;
 import org.springframework.data.annotation.Id;
 
 public class Customer {
@@ -7,13 +8,16 @@ public class Customer {
     @Id
     private Long id;
 
-    private final String firstName;
+    private String firstName;
 
-    private final String lastName;
+    private String lastName;
 
-    public Customer(String firstName, String lastName) {
+    private List<Account> accounts;
+
+    public Customer(String firstName, String lastName, List<Account> accounts) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.accounts = accounts;
     }
 
     public Long getId() {
@@ -32,10 +36,23 @@ public class Customer {
         return this.lastName;
     }
 
-    @Override
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  @Override
     public String toString() {
         return String.format(
             "Customer[id=%d, firstName='%s', lastName='%s']",
             id, firstName, lastName);
     }
+
+  public List<Account> getAccounts() {
+    return accounts;
+  }
+
 }
